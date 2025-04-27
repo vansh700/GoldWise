@@ -53,8 +53,8 @@ TradingView’s built-in crosshair, zoom, pan and tooltip features allow traders
 6. node server.js
 7. Server running on port 5500
 
+![Screenshot 2025-04-27 145543](https://github.com/user-attachments/assets/0f9d5cfa-c589-40fa-9650-ddf68681317c)
 
-![Screenshot 2025-03-30 194803](https://github.com/user-attachments/assets/17e20699-7664-4026-ba49-a19ca6d0d016)
 
 
 
