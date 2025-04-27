@@ -37,7 +37,7 @@ Interactive Chart Tools
 TradingView’s built-in crosshair, zoom, pan and tooltip features allow traders or shoppers to inspect exact price points at any timestamp. Hovering shows open/high/low/close values, and you can draw trendlines or measure percentage moves directly on the canvas.
 
 ## Link to Video Explanation
-[Watch the demo video](https://drive.google.com/file/d/1GdoIpL-Z738f1RnBvHqncI7fJhbXEMll/view?usp=drivesdk)
+[Watch the demo video](https://drive.google.com/file/d/10It3YTJr-RN357V0H_-dza2hFsIi3Yse/view?usp=drivesdk)
 
 ## Technologies Used
 - HTML, CSS, JavaScript  
