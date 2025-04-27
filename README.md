@@ -1,9 +1,9 @@
 #Goldwise-A Jewellery Management System
 
 ** Team Members**
-Sanyukt Bhatt
-Ishand Rai
-Luvin
+Sanyukt Bhatt ,
+Ishand Rai ,
+Luvin ,
 Vansh Soni
 
 
