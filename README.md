@@ -55,6 +55,28 @@ TradingView’s built-in crosshair, zoom, pan and tooltip features allow traders
 
 ![Screenshot 2025-04-27 145543](https://github.com/user-attachments/assets/0f9d5cfa-c589-40fa-9650-ddf68681317c)
 
+![Screenshot 2025-04-27 145601](https://github.com/user-attachments/assets/951ffeb1-a0ce-4da8-9d2b-65c8b4b6e8c8)
+
+![Screenshot 2025-04-27 145623](https://github.com/user-attachments/assets/58167c15-65d9-4dd6-a035-6031080a8935)
+
+
+![Screenshot 2025-04-27 145855](https://github.com/user-attachments/assets/4d03175d-73ca-486d-8292-0d5a36be4cc2)
+
+
+![Screenshot 2025-04-27 145944](https://github.com/user-attachments/assets/02b6fd7c-a605-4a40-9395-f5907a397af8)
+
+
+![Screenshot 2025-04-27 150020](https://github.com/user-attachments/assets/332cff76-f5f9-437c-9bcb-cdd181c2d0f6)
+
+
+![Screenshot 2025-04-27 150036](https://github.com/user-attachments/assets/c578eb2b-3a74-4399-a562-1ad0d837daf0)
+
+
+
+
+
+
+
 
 
 
