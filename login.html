@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="CSS/login.css"></link>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Create Account</h2>
+    <input type="text" id="username" class="input-field" placeholder="Username" required />
+    <input type="text" id="name" class="input-field" placeholder="Full Name" required />
+    <input type="email" id="email" class="input-field" placeholder="Email" required />
+    <input type="tel" id="phone" class="input-field" placeholder="Phone Number" required />
+    <input type="password" id="password" class="input-field" placeholder="Password" required />
+    <button class="login-btn" onclick="registerUser()">Register</button>
+  </div>
+
+  <script>
+    function registerUser() {
+      const username = document.getElementById('username').value;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      const user = { username, name, email, phone };
+      localStorage.setItem('user', JSON.stringify(user));
+      alert('Account created successfully!');
+      window.location.href = 'Home.html';
+    }
+  </script>
+
+</body>
+</html>

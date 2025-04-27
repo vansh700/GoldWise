@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/All_Jewellery.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div id="headerTag"></div>
+       <div class="filters">
+      <label for="categoryFilter"></label>
+      <select id="categoryFilter">
+        <option value="all"></option>
+        <option value="gold"></option>
+        <option value="diamond"></option>
+        <option value="platinum"></option>
+        <option value="earrings"></option>
+        <option value="rings"></option>
+      </select>
+    </div><div id="navBarTag"></div>
+    </header>
+   
+    <section class="store-section">
+      <h1 class="store-title" id="titleOfPage">Explore Our Collection</h1>
+      <div class="product-grid" id="product-card-id">
+          <div class="product-card" id="product">
+            <img src="Assets/Image/Img_1.jpg" alt="Elegant Diamond Necklace" class="product-image"/>
+            <h2 class="product-name">Elegant Diamond Necklace</h2>
+            <p class="product-price">₹49,999</p>
+            <div class="operation">
+              <button class="add-to-view" id="viewId">View Product</button>
+              <button class="add-to-cart" id="cartId"><i class="fa fa-shopping-cart"></i></button>
+            </div>
+          </div>
+      <!-- Add this new structure for single product view -->
+<section class="single-product-section">
+  <div class="product-container">
+      <div class="product-image-container">
+          <img src="Assets/Image/Img_1.jpg" alt="Product Image" id="productMainImage">
+          <div class="price-badge" id="priceBadge">₹127,075</div>
+      </div>
+      
+      <!-- <div class="product-details">
+          <h1 id="productTitle">Elegant Floral Diamond Mangalsutra in Yellow</h1> -->
+          
+          <div class="specifications">
+              <div class="spec-row">
+                  <span>Product Type:</span>
+                  <span id="productType">Mangalsutra</span>
+              </div>
+              <div class="spec-row">
+                  <span>Weight:</span>
+                  <span id="productWeight">Togram</span>
+              </div>
+              <div class="spec-row">
+                  <span>Material:</span>
+                  <span id="productMaterial">Golden</span>
+              </div>
+              <div class="spec-row">
+                  <span>Clarity:</span>
+                  <span id="productClarity">VVS1</span>
+              </div>
+          </div>
+
+          <div class="category-badges">
+              <span class="badge">GOLD</span>
+              <span class="badge">DIAMOND</span>
+              <span class="badge">PLATINUM</span>
+              <span class="badge">EARRINGS</span>
+              <span class="badge">RINGS</span>
+          </div>
+
+          <div class="description-box">
+              <h3>DESCRIPTION</h3>
+              <p id="productDescription">Enjoy sparkling jewellery. We provide free jewellery cleaning services!</p>
+          </div>
+
+          <button class="cta-button" onclick="addcart()">
+              <i class="fa fa-shopping-cart"></i> Add to Cart
+          </button>
+      </div>
+  </div>
+</section>
+  </section>
+    <footer>
+      <div id="footerTag"></div>
+    </footer>
+    <script src="JS/Product.js"></script>
+    <script src="JS/HeaderFooterNavbar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Precious Metals & Gold Rate Tracker</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- TradingView -->
+  <script src="https://s3.tradingview.com/tv.js"></script>
+
+  <style>
+    body { background-color: #f3f4f6; font-family: 'Roboto', sans-serif; }
+    .price-box { font-size: 1.5rem; font-weight: bold; color: #1f2937; }
+    .last-updated { font-size: 0.9rem; color: #6b7280; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+    .tab-button { transition: background-color 0.2s; }
+    .tab-button.active { background-color: #3b82f6; color: #fff; }
+    .unit-select { margin-bottom: 1rem; }
+    .live-market-updates { background: #fff; padding: 20px; text-align: center; margin-bottom: 2rem; }
+    .live-market-updates .main-price { font-size: 2rem; font-weight: bold; color: #8b0000; }
+    .live-market-updates .chart-container { width: 90%; max-width: 800px; height: 300px; margin: auto; }
+    .history-table { width: 90%; margin: 20px auto; border-collapse: collapse; background: #fff; }
+    .history-table th, .history-table td { padding: 10px; border: 1px solid #ddd; }
+    .history-table th { background: #f3f4f6; }
+  </style>
+</head>
+<body>
+  <header><div id="headerTag"></div><div id="navBarTag"></div></header>
+
+  <section class="live-market-updates">
+    <div class="main-price" id="mainPrice">Loading Gold Price...</div>
+    <div id="liveBanner">Updating prices...</div>
+    <div class="chart-container"><canvas id="goldPriceChart"></canvas></div>
+  </section>
+
+  <div class="container">
+    <div class="unit-select text-center">
+      <label for="unitSelect" class="font-medium mr-2">Display Unit:</label>
+      <select id="unitSelect" class="border rounded px-2 py-1">
+        <option value="gm">Gram (₹/gm)</option>
+        <option value="kg">Kilogram (₹/kg)</option>
+        <option value="oz">Ounce (₹/oz)</option>
+      </select>
+    </div>
+
+    <h2 class="text-2xl font-bold text-center mb-6">Live Precious Metals Prices</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white shadow rounded p-6 text-center">
+        <h3 class="font-semibold mb-2">Gold</h3>
+        <div id="gold-price" class="price-box">Loading...</div>
+        <div id="gold-updated" class="last-updated">Last updated: --</div>
+      </div>
+      <div class="bg-white shadow rounded p-6 text-center">
+        <h3 class="font-semibold mb-2">Silver</h3>
+        <div id="silver-price" class="price-box">Loading...</div>
+        <div id="silver-updated" class="last-updated">Last updated: --</div>
+      </div>
+      <div class="bg-white shadow rounded p-6 text-center">
+        <h3 class="font-semibold mb-2">Platinum</h3>
+        <div id="platinum-price" class="price-box">Loading...</div>
+        <div id="platinum-updated" class="last-updated">Last updated: --</div>
+      </div>
+    </div>
+
+    <div class="flex justify-center mb-4">
+      <button class="tab-button px-4 py-2 bg-gray-200 active" data-symbol="OANDA:XAUINR">Gold</button>
+      <button class="tab-button px-4 py-2 bg-gray-200 hover:bg-gray-300" data-symbol="OANDA:XAGINR">Silver</button>
+      <button class="tab-button px-4 py-2 bg-gray-200 hover:bg-gray-300" data-symbol="OANDA:XPTINR">Platinum</button>
+    </div>
+    <div class="bg-white shadow rounded p-4"><div id="tradingview_chart"></div></div>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold mb-4">22 Carat Gold Historical Rates</h2>
+      <table class="history-table">
+        <thead><tr><th>Date</th><th>Rate (₹/gm)</th><th>Change (₹)</th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer><div id="footerTag"></div></footer>
+
+  <script>
+    const apiKey ='a83cd110a3fd200518f45f4c4db3eb9c';
+    const baseURL = `https://api.metalpriceapi.com/v1/latest?api_key=${apiKey}&base=INR&symbols=`;
+    const urlGold = baseURL + 'XAU';
+    const urlAll = baseURL + 'XAU,XAG,XPT';
+    const formatter = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 2 });
+
+    let currentUnit = 'gm';
+    document.getElementById('unitSelect').addEventListener('change', e => {
+      currentUnit = e.target.value;
+      updateGold();
+      fetchPM();
+      updateChartLabel();
+    });
+
+    function convertToUnit(pricePerOunce) {
+      const perGram = pricePerOunce / 31.1035;
+      if (currentUnit === 'gm') return perGram;
+      if (currentUnit === 'kg') return perGram * 1000;
+      return pricePerOunce; // oz
+    }
+
+    function formatPrice(value) {
+      let unitText = currentUnit === 'gm' ? ' / gm' : currentUnit === 'kg' ? ' / kg' : ' / oz';
+      return formatter.format(value) + unitText;
+    }
+
+    let goldChart;
+    function initGoldChart() {
+      const ctx = document.getElementById('goldPriceChart').getContext('2d');
+      goldChart = new Chart(ctx, {
+        type: 'line',
+        data: { labels: [], datasets: [{ label: '', data: [], borderWidth: 2 }] },
+        options: {
+          responsive: true,
+          scales: { y: { beginAtZero: false, ticks: { callback: v => formatPrice(v) } } }
+        }
+      });
+      updateChartLabel();
+    }
+
+    function updateChartLabel() {
+      const label = `Gold (${currentUnit === 'kg' ? '₹/kg' : currentUnit === 'gm' ? '₹/gm' : '₹/oz'})`;
+      goldChart.data.datasets[0].label = label;
+      goldChart.update();
+    }
+
+    async function updateGold() {
+      try {
+        const res = await fetch(urlGold);
+        const data = await res.json();
+        const ounce = data.rates.INRXAU;
+        const now = new Date().toLocaleTimeString('en-IN', { timeStyle: 'medium' });
+        const value = convertToUnit(ounce);
+        document.getElementById('mainPrice').textContent = formatPrice(value);
+        document.getElementById('liveBanner').textContent = `Updated: ${now}`;
+        goldChart.data.labels.push(now);
+        goldChart.data.datasets[0].data.push(value);
+        if (goldChart.data.labels.length > 15) {
+          goldChart.data.labels.shift();
+          goldChart.data.datasets[0].data.shift();
+        }
+        goldChart.update();
+      } catch (e) { console.error(e); }
+    }
+
+    async function fetchPM() {
+      try {
+        const res = await fetch(urlAll);
+        const data = await res.json();
+        const now = new Date().toLocaleTimeString('en-IN', { timeStyle: 'medium' });
+        const { INRXAU, INRXAG, INRXPT } = data.rates;
+        const prices = {
+          gold: convertToUnit(INRXAU),
+          silver: convertToUnit(INRXAG),
+          platinum: convertToUnit(INRXPT)
+        };
+        ['gold','silver','platinum'].forEach(m => {
+          document.getElementById(`${m}-price`).textContent = formatPrice(prices[m]);
+          document.getElementById(`${m}-updated`).textContent = `Last updated: ${now}`;
+        });
+      } catch (e) { console.error(e); }
+    }
+
+    function loadChart(symbol) {
+      document.getElementById('tradingview_chart').innerHTML = '';
+      new TradingView.widget({ width: '100%', height: 500, symbol, interval: 'D', timezone: 'Asia/Kolkata', theme: 'light', style: '1', locale: 'en', container_id: 'tradingview_chart' });
+    }
+
+    const history = [
+      { date: '2025-04-21', rate: 7380, chg: 75 },
+      { date: '2025-04-20', rate: 7305, chg: -75 },
+      { date: '2025-04-19', rate: 7225, chg: -80 }
+    ];
+    function loadHistory() {
+      const tbody = document.getElementById('historyBody');
+      tbody.innerHTML = history.map(h => `<tr><td>${h.date}</td><td>₹${h.rate}</td><td>₹${h.chg}</td></tr>`).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initGoldChart(); updateGold(); setInterval(updateGold, 60000);
+      fetchPM(); setInterval(fetchPM, 30000);
+      loadChart('OANDA:XAUINR');
+      document.querySelectorAll('.tab-button').forEach(btn => btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        loadChart(btn.dataset.symbol);
+      }));
+      loadHistory();
+    });
+  </script>
+</body>
+</html>
+

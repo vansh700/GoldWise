@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation</title>
+  <style>
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    .confirmation-container {
+      text-align: center;
+      background: #fff;
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 100%;
+      transform: translateY(-50px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .confirmation-message {
+      font-size: 2rem;
+      color: #f08080;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    .tick-mark {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      background-color: #4CAF50;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards, scaleIn 0.5s ease-in-out forwards;
+    }
+
+    /* Animation for the tick mark */
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Fade-in effect for confirmation message */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Slide-up effect */
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    #home-btn {
+      padding: 12px 25px;
+      background-color: #f08080;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+
+    #home-btn:hover {
+      background-color: #e07171;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="confirmation-container">
+    <div class="confirmation-message">Your Order Has Been Placed!</div>
+    <!-- Updated tick mark animation -->
+    <div class="tick-mark">✔</div>
+    <button id="home-btn" onclick="goHome()">Go to Home Page</button>
+  </div>
+
+  <script>
+    // Clear cart in localStorage after order is confirmed
+    function clearCart() {
+      localStorage.removeItem('cart'); // Remove the cart from localStorage
+    }
+
+    // Redirect to home page and clear cart
+    function goHome() {
+      clearCart(); // Clear the cart before redirecting
+      window.location.href = 'Home.html'; // Redirect to home page
+    }
+  </script>
+</body>
+</html>
+    

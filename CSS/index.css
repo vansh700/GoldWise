@@ -1,0 +1,807 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'roboto';
+    color: #333;
+    line-height: 1.6;
+}
+.header {
+    /* width: 99vw; */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Align vertically */
+    gap: 30px; /* Add space between elements */
+    padding: 30px 30px;
+    background-color: #f2e9e9; /* Light gray */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+}
+.header .logo {
+    font-size: 2rem;
+    font-family: 'roboto';
+    font-weight: bold;
+}
+.header .logo a {
+    text-decoration: none;
+    color: #f08080; /* Light red */
+}
+.header .logo a:hover {
+    color: #ff7f7f; /* Slightly darker red on hover */
+}
+.header .search-bar {
+    display: flex;
+    align-items: center;
+    width: 40%; /* Adjust width as needed */
+}
+.header .search-bar input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none; /* Removed border */
+    border-radius: 12px 0 0 12px;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.header .search-bar button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    background-color: #f08080; /* Light red button */
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0 12px 12px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.header .search-bar button:hover {
+    background-color: #ff7f7f; /* Slightly darker red */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+.header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between icons */
+}
+.header .nav-links a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Icon container size */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f08080; /* Light red background */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.header .nav-links a:hover {
+    background-color: #ff7f7f; /* Slightly darker red on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+.header .nav-links i {
+    font-size: 20px; /* Size of FontAwesome icons */
+    color: white;
+    transition: transform 0.2s ease;
+}
+.header .nav-links a:hover i {
+    transform: scale(1.2); /* Slight zoom effect on hover */
+}
+/* General Navigation Bar Styling */
+.secondary-navbar {
+    font-family: 'roboto';
+    /* background-color: #f9f3f0; */
+    padding: 20px 0;
+    position: relative; /* Ensure proper stacking context */
+    z-index: 10; /* Set a higher value to keep the navbar above other content */
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu > li {
+    position: relative;
+    margin-right: 30px;
+    /* font-family: 'roboto';: Arial, sans-serif; */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+.secondary-navbar ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #f08080;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.secondary-navbar ul li a:hover {
+    color: #f08080; /* Optional: Change text color on hover */
+}
+.menu a:hover {
+    color: #f08080;
+}
+
+/* Dropdown Menu */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 20;
+    min-width: 800px; /* Ensures enough space for multiple columns */
+}
+
+/* Layout for submenu rows and columns */
+.submenu-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submenu-column {
+    width: 23%; /* Divide space equally between columns */
+}
+
+.submenu-column a {
+    color: #333;
+    font-size: 12px;
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+}
+
+.submenu-column a:hover {
+    color: #f08080;
+    background-color: #f2f2f2;
+}
+/* Style for column titles */
+.submenu-column strong {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f08080;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submenu {
+        position: static;
+        box-shadow: none;
+        min-width: 100%;
+        padding: 10px;
+    }
+
+    .submenu-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submenu-column {
+        width: 100%; /* Make columns stack on mobile */
+        margin-bottom: 15px;
+    }
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 10px;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px;
+}
+.hero h1 {
+    font-size: 3rem;
+    font-family: 'roboto';
+}
+.hero p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+.hero .btn {
+    background: #f08080;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+/* Shop By Category Section */
+.shop-by-category {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f8f4f1;
+}
+
+.shop-by-category h2 {
+    font-size: 2.5rem;
+    color: #7e5a3e;
+    margin-bottom: 20px;
+}
+
+.shop-by-category p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Category Grid */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 10%;
+}
+
+/* Category Card */
+.category-card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.category-card .category-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.category-card:hover .category-content {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.category-card .category-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.category-card .explore-btn {
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #fff;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.category-card .explore-btn:hover {
+    background-color: #7e5a3e;
+    color: #fff;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* About Section */
+.about {
+    background: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+}
+.about h2 {
+    font-family: 'roboto';
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Collections */
+.collections {
+    padding: 40px 20px;
+    text-align: center;
+}
+.collections h2 {
+    font-family: 'roboto';
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.collections .grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+.card h3 {
+    margin-top: 10px;
+}
+/* Carousel Container */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-controls button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}
+
+.carousel-controls button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+/* Video Section */
+.video-section {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.video-section h2 {
+    font-size: 2.5rem;
+    color: #7e5a3e;
+    margin-bottom: 20px;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+video {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    border: none;
+}
+
+.footer {
+    /* position: absolute;
+    bottom: 30px;
+    width: 100%; */
+    background-color: #f2e9e9; /* Light beige background */
+    color: #333; /* Dark gray text */
+    padding: 20px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Links Section */
+.footer .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer .footer-links a {
+    color: #333;
+    font-size: 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer .footer-links a:hover {
+    color: #f08080; /* Golden color */
+}
+
+.footer .footer-links a i {
+    font-size: 1.2rem;
+}
+
+/* Social Media Section */
+.footer .social-media {
+    margin-top: 15px;
+}
+
+.footer .social-media a {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-media a:hover {
+    color: #f08080; /* Golden hover */
+    transform: scale(1.2);
+}
+
+/* Copyright Section */
+.footer .bottom {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer .bottom a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer .bottom a:hover {
+    color: #f08080;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+    }
+}
+/* All_Jewellery Page */
+
+.breadcrumb {
+    margin: 20px 190px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.breadcrumb a {
+    color: #a52a2a;
+    text-decoration: none;
+}
+
+/* Page Header */
+.page-header {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    color: #7e5a3e;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-btn {
+    background-color: #7e5a3e;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.selected-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-tag {
+    background: #f2ecea;
+    color: #7e5a3e;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.sort-by {
+    margin-left: auto;
+}
+
+.sort-by label {
+    margin-right: 5px;
+}
+
+.sort-by select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Product Grid *//* Product grid container */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap to the next row if necessary */
+    justify-content: space-between; /* Adds space between products */
+    gap: 20px; /* Adds spacing between rows and columns */
+    padding: 30px 100px; /* Adds vertical padding to the grid */
+    border: 1px solid #ddd;
+    border-radius: 20px 20px 0px 0px;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px 5px black;
+    text-align: center;
+}
+
+/* Each product card */
+.product-card {
+    flex: 1 1 calc(33.33% - 20px); /* 3 items per row with space between */
+    max-width: calc(33.33% - 20px); /* Ensures maximum width for each card */
+    background: #fff;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 50px;
+}
+.post{
+    max-width: calc(68.5% - 40px); 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow:hidden;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .product-card{
+        flex: 1 1 100%; /* 1 item per row on small screens */
+        max-width: 100%;
+    }
+    .product-card {
+        flex: 1 1 calc(50% - 20px); /* 2 items per row on medium screens */
+        max-width: calc(40% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .product-card{
+        flex: 1 1 100%; /* 1 item per row on small screens */
+        max-width: 100%;
+    }
+    .product-card {
+        flex: 1 1 100%; /* 1 item per row on small screens */
+        max-width: 100%;
+    }
+}
+/* Gold Rate  */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Banner Section */
+.banner {
+    width: 100%;
+    position:static;
+    height: auto;
+    box-shadow: 0px 0px 20px .1px rgba(0, 0, 0, 0.635);
+}
+
+.gold-rate-section a{
+    text-decoration: none;
+    color: white;
+}
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Gold Rate Section */
+.gold-rate-section {
+    box-shadow: 0px 0px 20px .1px rgba(0, 0, 0, 0.100);
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #8b0000;
+}
+
+.description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Table Styling */
+.table-wrapper {
+    padding: 50px;
+    gap: 10px;
+    display: flex;
+    overflow-x: auto; /* Make table scrollable on small screens */
+    margin-bottom: 20px;
+}
+
+.gold-rate-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.369);
+}
+
+.gold-rate-table th,
+.gold-rate-table td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.gold-rate-table th {
+    background-color: #8b0000;
+    color: #fff;
+    font-weight: bold;
+}
+.gold-rate-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.gold-rate-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Styling */
+.buy-now-button {
+    background-color: #8b0000;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-now-button:hover {
+    background-color: #a11212;
+}
+
+/* Nearest Stores Section */
+.nearest-stores {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.nearest-stores h2 {
+    font-size: 1.5rem;
+    color: #8b0000;
+    margin-bottom: 5px;
+}
+
+.nearest-stores p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+
+    .gold-rate-table th, .gold-rate-table td {
+        font-size: 0.8rem;
+    }
+
+    .buy-now-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}

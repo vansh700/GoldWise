@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-login-container">
+        <h2>Admin Login</h2>
+        <div id="error-message" class="error-message" style="display: none;">Invalid credentials, please try again.</div>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="adminUsername">Username</label>
+                <input type="text" id="adminUsername" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+    </div>
+
+    <script>
+        // Simple admin credentials (for demo purposes)
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "admin123"
+        };
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            adminLogin();
+        });
+
+        function adminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                window.location.href = 'admin_panel.html';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

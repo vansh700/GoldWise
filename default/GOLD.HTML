@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Rate Today and Market Updates</title>
+  <!-- Fonts and Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="Assets/logo/logo.jpg" />
+  <!-- Gold Rate CSS (from gold_rate.css) -->
+  <link rel="stylesheet" href="CSS/goldRate.css" />
+  
+  <!-- External libraries for live updates -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  
+  <!-- Additional styles for the Live Market Updates section -->
+  <style>
+    /* Make the entire page white */
+    body {
+      background-color: #ffffff !important;
+    }
+    /* Live Market Updates Section */
+    .live-market-updates {
+      padding: 20px;
+      color: #000; /* Switch text to black */
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .live-market-updates .main-price {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #8b0000; /* Deep red to stand out */
+    }
+    .live-market-updates .gold-price,
+    .live-market-updates .silver-price,
+    .live-market-updates .platinum-price {
+      margin: 20px;
+    }
+    .live-market-updates .price-update {
+      transition: all 0.5s ease;
+      display: inline-block;
+      color: #000;
+    }
+    .live-market-updates .price-up {
+      color: green;
+      transform: scale(1.05);
+    }
+    .live-market-updates .price-down {
+      color: red;
+      transform: scale(0.95);
+    }
+    .live-market-updates .chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      height: 400px;
+    }
+    .live-market-updates .tradingview-widget-container {
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+    .live-market-updates table.live-table {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: #f9f9f9;
+      color: #000;
+    }
+    .live-market-updates table.live-table th,
+    .live-market-updates table.live-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .live-market-updates h1.live-header,
+    .live-market-updates h2.live-header {
+      margin-top: 40px;
+      color: #8b0000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header from gold_rate.html -->
+  <header>
+    <div id="headerTag"></div>
+    <div id="navBarTag"></div>
+  </header>
+
+  <!-- Live Market Updates Section -->
+  <section class="live-market-updates">
+    <div class="main-price" id="mainPrice">Loading Gold Price...</div>
+    <div id="liveBanner" style="font-size: 20px; margin-bottom: 20px;">
+      Updating prices...
+    </div>
+
+    <h1 class="live-header">Live Gold, Silver &amp; Platinum Price Updates</h1>
+
+    <!-- Gold Price Display -->
+    <div class="gold-price">
+      <h2>Current Gold Prices in Delhi</h2>
+      <p>
+        22 Karat Gold: 
+        <span id="22kPrice" class="price-update">₹7,957</span> per gram
+      </p>
+      <p>
+        24 Karat Gold (999 Gold): 
+        <span id="24kPrice" class="price-update">₹89,000</span> per gram
+      </p>
+      <p>Last Updated: <span id="updateTime">Loading...</span></p>
+    </div>
+
+    <!-- Silver Price Display -->
+    <div class="silver-price">
+      <h2>Current Silver Price in Delhi</h2>
+      <p>
+        Silver Price: 
+        <span id="silverPrice" class="price-update">Loading...</span> per gram
+      </p>
+    </div>
+
+    <!-- Platinum Price Display -->
+    <div class="platinum-price">
+      <h2>Current Platinum Price in Delhi</h2>
+      <p>
+        Platinum Price: 
+        <span id="platinumPrice" class="price-update">Loading...</span> per gram
+      </p>
+    </div>
+
+    <!-- Chart for Real-Time Gold Price Updates -->
+    <div class="chart-container">
+      <canvas id="goldPriceChart"></canvas>
+    </div>
+
+    <h2 class="live-header">
+      Live Advanced Candlestick Charts (Gold, Silver &amp; Platinum)
+    </h2>
+
+    <!-- TradingView Advanced Chart - Gold -->
+    <div class="tradingview-widget-container">
+      <div id="tradingview_gold_adv"></div>
+      <script type="text/javascript">
+        new TradingView.widget({
+          "width": "100%",
+          "height": 600,
+          "symbol": "FX_IDC:XAUINR",
+          "interval": "15",
+          "timezone": "Asia/Kolkata",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#000000",
+          "enable_publishing": false,
+          "allow_symbol_change": true,
+          "hide_side_toolbar": false,
+          "studies": ["MACD@tv-basicstudies", "RSI@tv-basicstudies"],
+          "container_id": "tradingview_gold_adv"
+        });
+      </script>
+    </div>
+
+    <!-- TradingView Advanced Chart - Silver -->
+    <div class="tradingview-widget-container">
+      <div id="tradingview_silver_adv"></div>
+      <script type="text/javascript">
+        new TradingView.widget({
+          "width": "100%",
+          "height": 600,
+          "symbol": "FX_IDC:XAGINR",
+          "interval": "15",
+          "timezone": "Asia/Kolkata",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#000000",
+          "enable_publishing": false,
+          "allow_symbol_change": true,
+          "hide_side_toolbar": false,
+          "studies": ["MACD@tv-basicstudies", "RSI@tv-basicstudies"],
+          "container_id": "tradingview_silver_adv"
+        });
+      </script>
+    </div>
+
+    <!-- TradingView Advanced Chart - Platinum -->
+    <div class="tradingview-widget-container">
+      <div id="tradingview_platinum_adv"></div>
+      <script type="text/javascript">
+        new TradingView.widget({
+          "width": "100%",
+          "height": 600,
+          "symbol": "FX_IDC:XPTINR",
+          "interval": "15",
+          "timezone": "Asia/Kolkata",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#000000",
+          "enable_publishing": false,
+          "allow_symbol_change": true,
+          "hide_side_toolbar": false,
+          "studies": ["MACD@tv-basicstudies", "RSI@tv-basicstudies"],
+          "container_id": "tradingview_platinum_adv"
+        });
+      </script>
+    </div>
+
+   
+
+  <!-- Gold Rate Section (from gold_rate.html) -->
+  <section class="gold-rate-section">
+    <h1 class="title">
+      From Everyday Elegance To Bridal Grace, Cherish Every Moment With GoldWise Auspicious Gold Jewellery
+    </h1>
+    <p class="description">
+      GoldWise offers a captivating collection of meticulously crafted gold pieces, each one whispering tales of tradition and heritage.
+      Explore our diverse collection and discover pieces that resonate with your unique story as we believe that gold is a language for
+      everyone. It’s more than just an ornament; it is a conversation starter, a confidence booster, and a treasured companion that
+      elevates your everyday moments. Visit GoldWise today and together, let’s create a story that shines as brightly as you do.
+    </p>
+    <div class="table-wrapper">
+      <table class="gold-rate-table">
+        <thead>
+          <tr>
+            <th>Gram</th>
+            <th>22 Carat Gold Today</th>
+            <th>22 Carat Gold Yesterday</th>
+            <th>Daily Price Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 gram</td>
+            <td>₹ 7380</td>
+            <td>₹ 7305</td>
+            <td>₹ 75</td>
+          </tr>
+          <tr>
+            <td>5 gram</td>
+            <td>₹ 59,040</td>
+            <td>₹ 58,440</td>
+            <td>₹ 600</td>
+          </tr>
+          <tr>
+            <td>10 gram</td>
+            <td>₹ 73,800</td>
+            <td>₹ 73,050</td>
+            <td>₹ 750</td>
+          </tr>
+          <tr>
+            <td>20 gram</td>
+            <td>₹ 738,000</td>
+            <td>₹ 730,500</td>
+            <td>₹ 7,500</td>
+          </tr>
+          <tr>
+            <td>50 gram</td>
+            <td>₹ 738,000</td>
+            <td>₹ 730,500</td>
+            <td>₹ 7,500</td>
+          </tr>
+          <tr>
+            <td>100 gram</td>
+            <td>₹ 738,000</td>
+            <td>₹ 730,500</td>
+            <td>₹ 7,500</td>
+          </tr>
+          <tr>
+            <td>200 gram</td>
+            <td>₹ 738,000</td>
+            <td>₹ 730,500</td>
+            <td>₹ 7,500</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="gold-rate-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>22 Carat</th>
+            <th>24 Carat</th>
+            <th>18 Carat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024-11-24</td>
+            <td>₹ 7380 (75)</td>
+            <td>₹ 8051 (82)</td>
+            <td>₹ 6038 (61)</td>
+          </tr>
+          <tr>
+            <td>2024-11-23</td>
+            <td>₹ 7305 (80)</td>
+            <td>₹ 7969 (87)</td>
+            <td>₹ 5977 (66)</td>
+          </tr>
+          <tr>
+            <td>2024-11-22</td>
+            <td>₹ 7225 (30)</td>
+            <td>₹ 7882 (33)</td>
+            <td>₹ 5911 (24)</td>
+          </tr>
+          <tr>
+            <td>2024-11-21</td>
+            <td>₹ 7195 (50)</td>
+            <td>₹ 7849 (54)</td>
+            <td>₹ 5887 (41)</td>
+          </tr>
+          <tr>
+            <td>2024-11-20</td>
+            <td>₹ 7380 (75)</td>
+            <td>₹ 8051 (82)</td>
+            <td>₹ 6038 (61)</td>
+          </tr>
+          <tr>
+            <td>2024-11-20</td>
+            <td>₹ 7380 (75)</td>
+            <td>₹ 8051 (82)</td>
+            <td>₹ 6038 (61)</td>
+          </tr>
+          <tr>
+            <td>2024-11-20</td>
+            <td>₹ 7380 (75)</td>
+            <td>₹ 8051 (82)</td>
+            <td>₹ 6038 (61)</td>
+          </tr>
+          <tr>
+            <td>2024-11-20</td>
+            <td>₹ 7380 (75)</td>
+            <td>₹ 8051 (82)</td>
+            <td>₹ 6038 (61)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer from gold_rate.html -->
+  <div id="footerTag"></div>
+
+  <!-- Live Price Update Script -->
+  <script>
+    const API_KEY ='dfbade25b9ae6f2a804c77628ce29154';
+    // API URLs for each metal (assumes metalpriceapi supports these bases)
+    const API_URL_GOLD     = `https://api.metalpriceapi.com/v1/latest?api_key=${API_KEY}&base=XAU&symbols=INR`;
+    const API_URL_SILVER   = `https://api.metalpriceapi.com/v1/latest?api_key=${API_KEY}&base=XAG&symbols=INR`;
+    const API_URL_PLATINUM = `https://api.metalpriceapi.com/v1/latest?api_key=${API_KEY}&base=XPT&symbols=INR`;
+
+    const formatter = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    function cachePrice(value) {
+      localStorage.setItem('lastGoldPrice', value);
+    }
+
+    function getCachedPrice() {
+      return parseFloat(localStorage.getItem('lastGoldPrice')) || null;
+    }
+
+    async function updatePrices() {
+      // Update Gold Price
+      try {
+        const responseGold = await fetch(API_URL_GOLD);
+        const dataGold = await responseGold.json();
+        const goldPerGram = dataGold.rates.INR / 31.1035;
+        const gold22K = goldPerGram * 0.916;
+        cachePrice(goldPerGram);
+        animatePriceChange('24kPrice', goldPerGram);
+        animatePriceChange('22kPrice', gold22K);
+        document.getElementById('mainPrice').textContent = formatter.format(goldPerGram) + " per gram";
+        document.getElementById('updateTime').textContent = new Date().toLocaleTimeString('en-IN', { timeStyle: 'short' });
+        updateChartData(goldPerGram);
+      } catch (error) {
+        const cachedPrice = getCachedPrice();
+        if (cachedPrice) {
+          animatePriceChange('24kPrice', cachedPrice);
+          animatePriceChange('22kPrice', cachedPrice * 0.916);
+          updateChartData(cachedPrice);
+          document.getElementById('mainPrice').textContent = formatter.format(cachedPrice) + " per gram";
+          document.getElementById('liveBanner').textContent = "Gold Price update failed. Using cached data.";
+        } else {
+          document.getElementById('liveBanner').textContent = "Gold Price update failed. No cached data available.";
+        }
+      }
+      
+      // Update Silver Price
+      try {
+        const responseSilver = await fetch(API_URL_SILVER);
+        const dataSilver = await responseSilver.json();
+        const silverPerGram = dataSilver.rates.INR / 31.1035;
+        document.getElementById('silverPrice').textContent = formatter.format(silverPerGram) + " per gram";
+      } catch (error) {
+        document.getElementById('silverPrice').textContent = "Price update failed.";
+      }
+      
+      // Update Platinum Price
+      try {
+        const responsePlatinum = await fetch(API_URL_PLATINUM);
+        const dataPlatinum = await responsePlatinum.json();
+        const platinumPerGram = dataPlatinum.rates.INR / 31.1035;
+        document.getElementById('platinumPrice').textContent = formatter.format(platinumPerGram) + " per gram";
+      } catch (error) {
+        document.getElementById('platinumPrice').textContent = "Price update failed.";
+      }
+      
+      // Update overall time banner for live updates
+      document.getElementById('liveBanner').textContent = `Live Prices Updated at ${new Date().toLocaleTimeString('en-IN')}`;
+    }
+
+    function animatePriceChange(id, newValue) {
+      const el = document.getElementById(id);
+      const prev = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
+      el.classList.remove('price-up', 'price-down');
+      // Force a reflow to restart animation
+      void el.offsetWidth;
+      if (newValue > prev) el.classList.add('price-up');
+      else if (newValue < prev) el.classList.add('price-down');
+      el.textContent = formatter.format(newValue);
+    }
+
+    let goldPriceChart;
+    function initializeChart() {
+      const ctx = document.getElementById('goldPriceChart').getContext('2d');
+      goldPriceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: '24K Gold Price (₹/gram)',
+              data: [],
+              borderColor: '#FFD700',
+              backgroundColor: 'rgba(255, 215, 0, 0.1)',
+              borderWidth: 2,
+              pointRadius: 3,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: false,
+              grid: { color: '#ccc' },
+              ticks: {
+                callback: (value) => formatter.format(value),
+                color: '#000',
+              },
+            },
+            x: {
+              grid: { color: '#ccc' },
+              ticks: { color: '#000' },
+            },
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: (ctx) => formatter.format(ctx.parsed.y),
+              },
+            },
+          },
+        },
+      });
+    }
+
+    function updateChartData(newPrice) {
+      const label = new Date().toLocaleTimeString('en-IN', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+      goldPriceChart.data.labels.push(label);
+      goldPriceChart.data.datasets[0].data.push(newPrice);
+      // Keep only the last 15 data points
+      if (goldPriceChart.data.labels.length > 15) {
+        goldPriceChart.data.labels.shift();
+        goldPriceChart.data.datasets[0].data.shift();
+      }
+      goldPriceChart.update();
+    }
+
+    window.onload = () => {
+      initializeChart();
+      updatePrices();
+      setInterval(updatePrices, 60000);
+    };
+  </script>
+
+  <!-- Scripts from gold_rate.html -->
+  <script src="JS/HeaderFooterNavbar.js"></script>
+  <script src="JS/index.js"></script>
+</body>
+</html>

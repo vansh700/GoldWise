@@ -1,0 +1,320 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Align vertically */
+    gap: 30px; /* Add space between elements */
+    padding: 30px 30px;
+    background-color: #f2e9e9; /* Light gray */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+}
+.header .logo {
+    font-size: 2rem;
+    font-family: 'roboto';
+    font-weight: bold;
+}
+.header .logo a {
+    text-decoration: none;
+    color: #f08080; /* Light red */
+}
+.header .logo a:hover {
+    color: #ff7f7f; /* Slightly darker red on hover */
+}
+.header .search-bar {
+    display: flex;
+    align-items: center;
+    width: 40%; /* Adjust width as needed */
+}
+.header .search-bar input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none; /* Removed border */
+    border-radius: 12px 0 0 12px;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.header .search-bar button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    background-color: #f08080; /* Light red button */
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0 12px 12px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.header .search-bar button:hover {
+    background-color: #ff7f7f; /* Slightly darker red */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+.header .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between icons */
+}
+.header .nav-links a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Icon container size */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f08080; /* Light red background */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.header .nav-links a:hover {
+    background-color: #ff7f7f; /* Slightly darker red on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+.header .nav-links i {
+    font-size: 20px; /* Size of FontAwesome icons */
+    color: white;
+    transition: transform 0.2s ease;
+}
+.header .nav-links a:hover i {
+    transform: scale(1.2); /* Slight zoom effect on hover */
+}
+
+
+/* General Navigation Bar Styling */
+.secondary-navbar {
+    font-family: 'roboto';
+    /* background-color: #f9f3f0; */
+    padding: 20px 0;
+    position: relative; /* Ensure proper stacking context */
+    z-index: 10; /* Set a higher value to keep the navbar above other content */
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu > li {
+    position: relative;
+    margin-right: 30px;
+    /* font-family: 'roboto';: Arial, sans-serif; */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+.secondary-navbar ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #f08080;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.secondary-navbar ul li a:hover {
+    color: #f08080; /* Optional: Change text color on hover */
+}
+.menu a:hover {
+    color: #f08080;
+}
+
+/* Dropdown Menu */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 20;
+    min-width: 800px; /* Ensures enough space for multiple columns */
+}
+
+/* Layout for submenu rows and columns */
+.submenu-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submenu-column {
+    width: 23%; /* Divide space equally between columns */
+}
+
+.submenu-column a {
+    color: #333;
+    font-size: 12px;
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+}
+
+.submenu-column a:hover {
+    color: #f08080;
+    background-color: #f2f2f2;
+}
+/* Style for column titles */
+.submenu-column strong {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f08080;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submenu {
+        position: static;
+        box-shadow: none;
+        min-width: 100%;
+        padding: 10px;
+    }
+
+    .submenu-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .submenu-column {
+        width: 100%; /* Make columns stack on mobile */
+        margin-bottom: 15px;
+    }
+}
+
+
+/* Footer */
+.footer {
+    background-color: #f2e9e9; /* Light beige background */
+    color: #333; /* Dark gray text */
+    padding: 20px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Links Section */
+.footer .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.footer .footer-links a {
+    color: #333;
+    font-size: 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer .footer-links a:hover {
+    color: #f08080; /* Golden color */
+}
+
+.footer .footer-links a i {
+    font-size: 1.2rem;
+}
+
+/* Social Media Section */
+.footer .social-media {
+    margin-top: 15px;
+}
+
+.footer .social-media a {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-media a:hover {
+    color: #f08080; /* Golden hover */
+    transform: scale(1.2);
+}
+
+/* Copyright Section */
+.footer .bottom {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer .bottom a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer .bottom a:hover {
+    color: #f08080;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+    }
+}
+.fa-shopping-cart {
+    margin-left: 8px;
+    font-size: 1.2em;
+}
+/* Style the category dropdown to look like nav items */
+.category-filter-item {
+    list-style: none;
+  }
+  
+  .category-select {
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  /* Optional: Add a border or hover effect */
+  .category-select:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  

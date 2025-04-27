@@ -1,0 +1,191 @@
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+    background-attachment: fixed;
+}
+
+.store-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.store-title {
+    font-size: 2.8rem;
+    color: #f08080;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    justify-content: flex-end;
+}
+
+.product-card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.8));
+}
+
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.product-name {
+    font-size: 1.5rem;
+    color: #5a5a5a;
+    margin: 15px 0 10px;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    color: #c96e7d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.add-to-cart {
+    background-color: #f08080;
+    color: #fdfdfd;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: auto;
+}
+
+.add-to-cart:hover {
+    background-color: #e57373;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Subtle floating animation */
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 70%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(10px);
+}
+
+/* .................................................. */
+
+/* Container styling */
+.category-section {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  /* Title styling */
+  .category-title {
+    font-size: 2.5rem;
+    color: #f08080; /* Preferred title color */
+    font-family: 'Georgia', 'Times New Roman', serif; /* Updated font-family */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Category container grid */
+  .category-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between cards */
+  }
+  
+  /* Individual category card styling */
+  .category-card {
+    display: block; /* Make anchor behave like a block element */
+    width: 250px;
+    height: 320px;
+    background-color: #ffffff; /* White background */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  /* Image styling */
+  .category-image {
+    width: 60%;              /* Dynamic width */
+    max-width: 150px;        /* Prevent oversized images */
+    height: auto;            /* Maintain aspect ratio */
+    object-fit: contain;     /* Ensure the image fits within the container */
+    margin-top: 10px;
+  }
+  
+  /* Text styling for category name */
+  .category-name {
+    font-size: 1.7rem;
+    font-family: 'Georgia', 'Times New Roman', serif; /* Updated font-family */
+    font-weight: bold;
+    color: #333333; /* Dark gray text */
+    margin-top: 10px;
+  }
+  
+  /* Hover effect */
+  .category-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #f0f8ff, #d7e1ec); /* Soft gradient on hover */
+  }
+  
+  /* Hover effect on links */
+  .category-card:hover .category-name {
+    color: #f08080; /* Change text color on hover */
+  }
+  

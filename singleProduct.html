@@ -1,0 +1,120 @@
+<!-- singleproduct.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/singleProduct.css">
+</head>
+<body>
+    <header>
+        <div id="headerTag"></div>
+        <div id="navBarTag"></div>
+    </header>
+
+    <section class="single-product-section">
+        <div class="product-container">
+            <!-- Image Section -->
+            <div class="product-image-container">
+                <img id="productMainImage" class="main-image" alt="Product Image">
+                <div class="image-thumbnails" id="imageThumbnails"></div>
+                <div class="price-badge" id="priceBadge"></div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="product-details">
+                <h1 id="productTitle"></h1>
+
+                <!-- Metal Details -->
+                <div class="spec-section">
+                    <h3 onclick="toggleDetails(this)">
+                        <i class="fa fa-info-circle"></i>
+                        METAL DETAILS <i class="fa fa-chevron-down"></i>
+                    </h3>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <span>Karatage:</span>
+                            <span id="metalKarat"></span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Metal Type:</span>
+                            <span id="metalType"></span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Gross Weight:</span>
+                            <span id="grossWeight"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Specifications -->
+                <div class="spec-section">
+                    <h3 onclick="toggleDetails(this)">
+                        <i class="fa fa-cube"></i>
+                        PRODUCT DETAILS <i class="fa fa-chevron-down"></i>
+                    </h3>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <span>Product Type:</span>
+                            <span id="productType"></span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Weight:</span>
+                            <span id="productWeight"></span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Clarity:</span>
+                            <span id="productClarity"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Details -->
+                <div class="spec-section">
+                    <h3 onclick="toggleDetails(this)">
+                        <i class="fa fa-info-circle"></i>
+                        GENERAL DETAILS <i class="fa fa-chevron-down"></i>
+                    </h3>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <span>Brand:</span>
+                            <span id="brand"></span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Collection:</span>
+                            <span id="collection"></span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Product Code:</span>
+                            <span id="productCode"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="description-section">
+                    <h3><i class="fa fa-file-alt"></i> DESCRIPTION</h3>
+                    <p id="productDescription"></p>
+                    <div class="update-badge" id="updateDate"></div>
+                </div>
+
+                <!-- Add to Cart -->
+                <button class="cta-button" onclick="addToCart()">
+                    <i class="fa fa-shopping-cart"></i> 
+                    Add to Cart - <span id="cartPrice"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="footerTag"></div>
+    </footer>
+    
+    <script src="JS/singleProduct.js"></script>
+    <script src="JS/HeaderFooterNavbar.js"></script>
+</body>
+</html>

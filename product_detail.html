@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/CSS/product_detail.css">
+    <!-- Add this in head section -->
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="product-container">
+        <div class="product-image">
+            <img id="product-img" src="" alt="Product Image">
+        </div>
+        <div class="product-info">
+            <h1 id="product-name"></h1>
+            <p class="price" id="product-price"></p>
+            <div class="product-description-section">
+                <h3 class="product-description-header">Product Description</h3>
+                <p class="product-description-text" id="productDescription"></p>
+            </div>
+            <button class="add-to-cart"><i class="fa fa-shopping-cart"></i></button>
+        </div>
+        <!-- Add after Description section -->
+<!-- Add this section before GENERAL DETAILS -->
+<div class="details-section">
+  <h3>METAL DETAILS</h3>
+  <div class="details-grid">
+      <div class="detail-item">
+          <span>Karatage:</span>
+          <span id="karatage"></span>
+      </div>
+      <div class="detail-item">
+          <span>Metal Type:</span>
+          <span id="metalType"></span>
+      </div>
+      <div class="detail-item">
+          <span>Metal Color:</span>
+          <span id="metalColor"></span>
+      </div>
+      <div class="detail-item">
+          <span>Gross Weight:</span>
+          <span id="grossWeight"></span>
+      </div>
+  </div>
+</div>
+
+<div class="details-section">
+  <h3>PRODUCT SPECIFICATIONS</h3>
+  <div class="details-grid">
+      <div class="detail-item">
+          <span>Product Weight:</span>
+          <span id="weight"></span>
+      </div>
+      <div class="detail-item">
+          <span>Clarity:</span>
+          <span id="clarity"></span>
+      </div>
+      <div class="detail-item">
+          <span>Product Color:</span>
+          <span id="productColor"></span>
+      </div>
+  </div>
+</div>
+    </div>
+    <script src="/JS/product_detail.js"></script>
+</body>
+</html>

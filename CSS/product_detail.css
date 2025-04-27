@@ -1,0 +1,60 @@
+/* Add to your product_detail.css */
+.product-description-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-description-header {
+    color: #c96e7d;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.product-description-text {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    white-space: pre-wrap;
+}
+.add-to-cart {
+    padding: 15px 30px;
+    background: #9d2235;
+    color: white;
+    border-radius: 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.add-to-cart i {
+    transition: transform 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background: #7a1a27;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.add-to-cart:hover i {
+    transform: scale(1.2);
+}
+@keyframes checkmark {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+}
+.add-to-cart.added::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    margin-left: 10px;
+    animation: checkmark 0.5s ease;
+}

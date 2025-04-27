@@ -1,0 +1,178 @@
+/* style.css - Optimized Version */
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('https://images.unsplash.com/photo-1609921212029-bb5a28e60960?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    color: #333;
+  }
+  
+  /* Calculator Container */
+  .calculator-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Input Section */
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .input-group input,
+  .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-group input:focus,
+  .input-group select:focus {
+    border-color: #ff6f61;
+    outline: none;
+  }
+  
+  #add-purchase-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  #add-purchase-btn:hover {
+    background: #ff4a3d;
+  }
+  
+  /* Table Styles */
+  #purchase-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #purchase-table th {
+    background: #ff6f61;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  #purchase-table td {
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  #purchase-table td:nth-child(4),
+  #purchase-table td:nth-child(9) {
+    text-align: center;
+  }
+  
+  #purchase-table td:nth-child(9) {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  #purchase-table td:nth-child(10) {
+    font-weight: bold;
+  }
+  
+  /* Analytics Section */
+  .analytics-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+  }
+  
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h4 {
+    margin: 0 0 10px 0;
+    color: #666;
+  }
+  
+  .card p {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Export Section */
+  .export-section {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .export-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .export-btn:hover {
+    background: #45a049;
+  }
+  
+  /* Delete Button */
+  .delete-btn {
+    background: transparent;
+    border: none;
+    color: #ff4444;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    float: right;
+  }
+  
+  /* Chart Container */
+  #profitChart {
+    max-height: 300px;
+    margin-top: 20px;
+  }

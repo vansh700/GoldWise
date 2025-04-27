@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'roboto';
+    /* font-family: sans-serif; */
+    color: #333;
+    line-height: 1.6;
+
+}
+.container{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    scroll-margin-top: 200px;
+    width: 100%;
+    /* margin-top: 100px; */
+    margin: 0 auto;
+    padding: 0px;
+}
+h1, h2 {
+    color: #f08080;
+    text-align: center;
+    position: relative;
+}
+.about-section, .mission-section, .team-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+.about-section:hover, .mission-section:hover, .team-section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.about-section:hover h1::after, .mission-section:hover h2::after, .team-section:hover h2::after {
+    width: 100%;
+    left: 0;
+}
+h1::after, h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #f08080;
+    transition: width 0.3s, left 0.3s;
+}
+h1, h2 {
+    position: relative;
+}
+.about-section p, .mission-section p, .team-section p {
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.team-member img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    transition: transform 0.3s;
+}
+.team-member img:hover {
+    transform: scale(1.1);
+}
+.team-member h3 {
+    margin: 0;
+    color: #333;
+}
+.team-member p {
+    margin: 5px 0;
+    color: #555;
+}
+.team-member a {
+    color: #007BFF;
+    text-decoration: none;
+}
+.team-member a:hover {
+    text-decoration: underline;
+}
+p {
+    text-align: center;
+}
+.team-member a{
+    padding: 10px;
+    color: #f08080;
+    text-decoration: none;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Portfolio - GoldWise Jewellery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="portfolio-container">
+    <h2>Customer Portfolio</h2>
+
+    <!-- Add Customer Form -->
+    <div class="add-customer-form">
+      <h3>Add Customer Record</h3>
+      <div class="input-group">
+        <label for="customer-name">Customer Name</label>
+        <input type="text" id="customer-name" placeholder="Enter customer name">
+      </div>
+      <div class="input-group">
+        <label for="customer-gender">Gender</label>
+        <select id="customer-gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="customer-phone">Phone Number</label>
+        <input type="text" id="customer-phone" placeholder="Enter phone number">
+      </div>
+      <div class="input-group">
+        <label for="purchase-item">Item Purchased</label>
+        <input type="text" id="purchase-item" placeholder="Enter item purchased">
+      </div>
+      <div class="input-group">
+        <label for="purchase-date">Purchase Date</label>
+        <input type="date" id="purchase-date">
+      </div>
+      <div class="input-group">
+        <label for="item-price">Price (₹)</label>
+        <input type="number" id="item-price" placeholder="Enter item price">
+      </div>
+      <button id="add-customer-btn">Add Record</button>
+    </div>
+
+    <!-- Customer Portfolio Table -->
+    <div class="customer-portfolio">
+      <h3>Customer Records</h3>
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search by name, phone, or item...">
+      </div>
+      <table id="customer-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th>Item</th>
+            <th>Purchase Date</th>
+            <th>Price (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Customer records will be added here dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

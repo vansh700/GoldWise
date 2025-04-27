@@ -1,0 +1,81 @@
+body {
+    font-family: 'Roboto';
+    background-color: #f8f8f8;
+}
+.gold-rate-section a{
+    text-decoration: none;
+    color: white;
+}
+/* Gold Rate Section */
+.gold-rate-section {
+    box-shadow: 0px 0px 20px .1px rgba(0, 0, 0, 0.100);
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #8b0000;
+}
+
+.description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Table Styling */
+.table-wrapper {
+    padding: 50px;
+    gap: 10px;
+    display: flex;
+    overflow-x: auto; /* Make table scrollable on small screens */
+    margin-bottom: 20px;
+}
+
+.gold-rate-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.369);
+}
+
+.gold-rate-table th,
+.gold-rate-table td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.gold-rate-table th {
+    background-color: #8b0000;
+    color: #fff;
+    font-weight: bold;
+}
+.gold-rate-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.gold-rate-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Styling */
+.buy-now-button {
+    background-color: #8b0000;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-now-button:hover {
+    background-color: #a11212;
+}
