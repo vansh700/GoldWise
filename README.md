@@ -54,7 +54,7 @@ TradingView’s built-in crosshair, zoom, pan and tooltip features allow traders
 7. Server running on port 5500
 
 
-
+![Screenshot 2025-03-30 194803](https://github.com/user-attachments/assets/17e20699-7664-4026-ba49-a19ca6d0d016)
 
 
 
