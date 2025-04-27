@@ -46,10 +46,15 @@ TradingView’s built-in crosshair, zoom, pan and tooltip features allow traders
 
 ## Steps to Run / Execute the Project
 1. Clone the repo  
-2. `npm install`  
-3. Create a `.env` with your credentials  
-4. `node server.js` (or `npm start`)  
-5. Open `http://localhost:3000` in your browser 
+2. net start MongoDB
+3. cd 1/backend
+4. trial_cp
+5. npm install
+6. node server.js
+7. Server running on port 5500
+
+
+
 
 
 
